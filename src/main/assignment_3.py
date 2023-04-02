@@ -146,7 +146,24 @@ def LU_decomposition(C):
     return C,L
 
 def checkDiagonalDominance(A):
-    m,n = C.shape
+    m,n = A.shape
+
+    StrictlyDominant = True
+    for i in range(m):
+        a_ii = abs(A[i,i])
+        sumRow = 0
+        for j in range(n):
+            if(i==j):
+                continue
+            else:
+                a_ij = abs(A[i,j])
+                sumRow += a_ij
+            
+                
+        if(not (a_ii >= sumRow)):
+            StrictlyDominant = False
+            break
+    return StrictlyDominant
 
 
 
@@ -219,6 +236,9 @@ def Question5():
                          [0, 1, 7, 2, 3],
                          [4, 2, 3,12, 2],
                          [3, 2, 4, 0, 8]])
+    
+    diagonallyDominant = checkDiagonalDominance(matrix_A)
+    print(diagonallyDominant)
 
 if(__name__ == "__main__"):
-    Question4()
+    Question5()
