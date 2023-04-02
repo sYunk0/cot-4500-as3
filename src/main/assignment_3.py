@@ -165,6 +165,19 @@ def checkDiagonalDominance(A):
             break
     return StrictlyDominant
 
+def checkPositiveDefinite(A):
+    m,n = A.shape
+    if(m!=n):
+        return False
+    
+    A_t = A.T
+    for i in range(m):
+        for j in range(i,n):
+            if(A_t[i,j] != A[i,j]):
+                return False
+            
+
+    return True
 
 
 def Question1():
@@ -178,7 +191,7 @@ def Question1():
     w0 = 1
 
     y = EulerMethod(f,a,b,N,w0)
-    print(y)
+    print("{:.5f}".format(y))
 
 def Question2():
     def f(t,y):
@@ -191,7 +204,7 @@ def Question2():
     w0 = 1
 
     y = Runge_KuttaMethod(f,a,b,N,w0)
-    print(y)
+    print("{:.5f}".format(y))
 
 def Question3():
     MatrixA = np.array([[ 2,-1, 1],
@@ -224,7 +237,7 @@ def Question4():
 
     upperMatrix,lowerMatrix = LU_decomposition(matrix_A.copy())
     #lowerMatrix = getLowerMatrix(matrix_A)
-    print(det)
+    print("{:.5f}".format(det))
     print()
     print(lowerMatrix)
     print()
@@ -240,5 +253,24 @@ def Question5():
     diagonallyDominant = checkDiagonalDominance(matrix_A)
     print(diagonallyDominant)
 
+def Question6():
+    matrix_A = np.array([[2,2,1],
+                         [2,3,0],
+                         [1,0,2]])
+    
+    positiveDefinite = checkPositiveDefinite(matrix_A)
+
+    print(positiveDefinite)
+
 if(__name__ == "__main__"):
+    Question1()
+    print()
+    Question2()
+    print()
+    Question3()
+    print()
+    Question4()
+    print()
     Question5()
+    print()
+    Question6()
